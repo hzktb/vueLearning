@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .play {
+        color: cornflowerblue;
+      }
+      .play:hover {
+        color: red;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="searchBar">
+        听音乐
+        <br />
+        搜索你想听的音乐：<input
+          type="text"
+          v-model="query"
+          @keyup.enter="searchMusic"
+        />
+      </div>
+      <ul class="music-list">
+        <li v-for="(music, index) in musicList">
+          <span class="play" @click="playMusic(music.id)">play</span> - {{index
+          + 1}} - {{music.name}} - {{music.artists[0].name}}
+        </li>
+      </ul>
+      <div class="audio">
+        <audio :src="musicUrl" ref="audio" controls autoplay loop></audio>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

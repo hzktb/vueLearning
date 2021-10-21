@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="newInput" @keyup.enter="addNewTodo" />
+      <ul>
+        <li v-for="(todo,index) in todos">
+          <span>{{index + 1}}</span> <span>{{todo}}</span>
+          <button @click="deleteTodo(index)">x</button>
+        </li>
+      </ul>
+      <div v-show="todos.length !== 0">
+        <span>{{todos.length}} to do's left</span>
+        <span @click="clearAll">clear all</span>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          todos: ["吃饭饭", "睡觉觉", "敲码码"],
+          newInput: "",
+        },
+        methods: {
+          addNewTodo: function () {
+            this.todos.push(this.newInput);
+            this.newInput = "";
+          },
+          deleteTodo: function (index) {
+            console.log(index);
+            this.todos.splice(index, 1);
+          },
+          clearAll: function () {
+            this.todos = [];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
